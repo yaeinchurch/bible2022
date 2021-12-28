@@ -1,241 +1,68 @@
 <!DOCTYPE html>
-<html lang="ko">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>2021 예인교회</title>
-        <style type="text/css">
-            * {
-                margin:0px;
-                padding:0px;
-            }
-            p{
-                text-align: center;
-                line-height: 0px;
-            }
-        </style>
-    </head>
-    <body bgcolor="white">
-        
-        <script type="text/javascript">
-            const DU = 'DeviceUser';
-            const U1 = 'Other1';
-            const U2 = 'Other2';
-            const U3 = 'Other3';
-            const U4 = 'Other4';
-            const U5 = 'Other5';
-            const UNUM = 'UserCounter';
-            const SN = 'SavedName';
-            const AM = 'AddMode';
-            var userNum = 0;
-            const ItemNumkeys = [DU, U1, U2, U3, U4, U5];
-            var ItemNums = [0,0,0,0,0];
-            const ItemNamekeys = ['N0', 'N1', 'N2', 'N3', 'N4', 'N5'];
-            var ItemNames = ['no', 'n1', 'n2', 'n3', 'n4', 'n5'];
-            var savedName = '다른 분';
-            var bModeAddword = 0;
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YaeinBible2022</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/style.css">	
+	<script src="https://kit.fontawesome.com/c47106c6a7.js" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+<body>
+    <!-- 페이징 버튼 -->
+	<div class="swiper-pagination"></div>
 
-            var RedButtonCounter = 0;
-            var GreenButtonCounter = 0;
-                        
-            // Start
-            init();
-
-            if(checkDone()) {
-                displayWord();
-            } else {
-                mainPage0();
-            }
-
-            // Define Function
-            function init() {
-                if(localStorage.getItem(UNUM) !== null) {
-                    userNum = parseInt(localStorage.getItem(UNUM));
-                } else {
-                    userNum = 0;
-                }
-                
-                //console.log("init userNum = " + userNum);
-                for(var n=0; n<userNum; n++) {
-                    ItemNums[n] = localStorage.getItem(ItemNumkeys[n]);
-                    ItemNames[n] = localStorage.getItem(ItemNamekeys[n]);
-                    //console.log("init n,Num,Name =" + n + " " + ItemNums[n] + " " + ItemNames[n]);
-                }
-
-                if(localStorage.getItem(AM) !== null) {
-                    bModeAddword = parseInt(localStorage.getItem(AM));
-                    savedName = localStorage.getItem(SN);
-                } else {
-                    bModeAddword = 0;
-                }
-                
-                
-            }
-
-            function saveLocalStorage() {
-                //console.log("saveLocalStorage userNum = " + userNum);
-                localStorage.setItem(UNUM, userNum);
-                for(var n=0; n<userNum; n++) {
-                    localStorage.setItem(ItemNumkeys[n], ItemNums[n]);
-                    localStorage.setItem(ItemNamekeys[n], ItemNames[n]);
-                    //console.log("saveLocalStorage n,Num,Name =" + n + " " + ItemNums[n] + " " + ItemNames[n]);
-                }
-            }
-
-            function removeLocalStorageAll() {
-                localStorage.clear();
-                localStorage.setItem(UNUM, 0);
-                location.href="index.html";
-            }
-
-            function addAnotherWord() {
-                savedName = document.getElementById('name').value;
-                if(savedName === "") {
-                    alert("이름을 입력해 주세요.");
-                } else if(savedName === "삭제") { //1229 
-                    alert("보고 계시는 화면 아래쪽에 삭제 버튼이 생겼습니다!");
-                    deleteMode();
-                    
-                } else {
-                    if(userNum < 6) {
-                        localStorage.setItem(SN, savedName);
-                        localStorage.setItem(AM,1);
-                        location.href="index.html";
-                    } else {
-                        alert("추가 5개를 다 받으셨어요!");
-                    }
-                    
-                }
-            }
-
-            function writeCSSText() {
-                document.write("<style type='text/css'>");
-                document.write("* {margin:0px; padding:0px;}");
-                document.write("p {text-align: center; }"); // line-height: 0px; 
-                document.write("</style>");
-            }
-
-            function selectHandler() {
-
-                var a = Math.floor(Math.random()*1000) % 455;
-                a = a + 1; // no 0.jpg
-                userNum = userNum + 1;
-                ItemNums[userNum-1] = a;
-                if(userNum === 1) { savedName = '나';} // 첫 성구는 내 것.
-                ItemNames[userNum-1] = savedName;                
-                //console.log("selectHandler userNum = " + userNum);
-                
-                displayWord();
-                saveLocalStorage();
-            }
-
-            function displayWord() {
-                writeCSSText();
-                //console.log("displayWord userNum = " + userNum);
-                for(var n=0; n<userNum; n++) {
-                    if(n===0) {
-                        document.write("■ '" + ItemNames[n] + "'의 새해 말씀카드")
-                    } else {
-                        document.write(n + ". '" + ItemNames[n] + "'의 새해 말씀카드")
-                    }
-                    
-                    document.write("<p><img src='jpg001/" + ItemNums[n] + ".jpg' width='100%'></p>");
-                    document.write("<br>");
-                }
-                //if(userNum < 6) {
-                    document.write("<P><input type='text' size='12' name='name' id='name' value='' placeholder='이름을 써 주세요' required>를 위한 ");
-                    document.write("<br><img src='bt_onemore.jpg' width='50%' onclick='addAnotherWord()'></P>");
-                    document.write("<br><P>※최대 5개까지 추가로 더 받을 수 있습니다.</p>");
-                //}
-
-                //1229 document.write("<br><br><p><img src='50_icon_reset.png' onclick='pushRedButton()'>");
-                //1229 document.write("<img src='50_icon_check.png' onclick='pushGreenButton()'></p>");
-            }
-
-            function pushRedButton() {
-                RedButtonCounter++;
-            }
-
-            function pushGreenButton() {
-                GreenButtonCounter++;
-                if(RedButtonCounter === 4) {
-                    alert("녹색버튼 " + GreenButtonCounter + "번!");
-                    if(GreenButtonCounter === 3) {
-                        deleteMode();
-                    }
-                } else {
-                    RedButtonCounter = 0;
-                    GreenButtonCounter = 0;
-                }
-            }
-
-            function removeN(n) {
-                if(n < userNum) {
-                    userNum = userNum - 1;
-                    ItemNums.splice(n, 1);
-                    ItemNames.splice(n, 1);
-                    saveLocalStorage();
-                }
-                location.href="index.html";
-            }
-
-            function removeMy() { removeN(0); }
-            function removeWord1() { removeN(1); }
-            function removeWord2() { removeN(2); }
-            function removeWord3() { removeN(3); }
-            function removeWord4() { removeN(4); }
-            function removeWord5() { removeN(5); }
-
-            function deleteMode() {
-                writeCSSText();
-                document.write("<p><br><br><input type='submit' value='전체삭제' onclick='removeLocalStorageAll()'><br><br>");
-                document.write("<input type='submit' value='내꺼 삭제' onclick='removeMy()'><br><br>");
-                if(userNum>1) {
-                    document.write("<input type='submit' value='1번 삭제' onclick='removeWord1()'><br><br>");
-                }
-                if(userNum>2) {
-                    document.write("<input type='submit' value='2번 삭제' onclick='removeWord2()'><br><br>");
-                }
-                if(userNum>3) {
-                    document.write("<input type='submit' value='3번 삭제' onclick='removeWord3()'><br><br>");
-                }
-                if(userNum>4) {
-                    document.write("<input type='submit' value='4번 삭제' onclick='removeWord4()'><br><br>");
-                }
-                if(userNum>5) {
-                    document.write("<input type='submit' value='5번 삭제' onclick='removeWord5()'></p>");
-                }
-            }
-        
-            function mainPage0() {
-                document.write("<p><img src='bg_01.jpg' width='100%' /><br><br>");
-                document.write("<img src='bg_02.jpg' width='100%' /><br><br>");
-                document.write("<img src='bg_03.jpg' width='100%' onclick='selectHandler()'/><br><br>");
-                //document.write("<img src='bg_03.jpg' width='100%' onclick='selectAnimation()'/><br><br>");
-                document.write("<img src='bg_04.jpg' width='100%' /></p>");
-            }
-
-            function checkDone() {
-                //console.log("checkDone userNum, bModeAddword = " + userNum + " " + bModeAddword);
-                if(userNum === 0 || bModeAddword === 1 ) {
-                    localStorage.setItem(AM,0);
-                    //console.log("checkDone ret false");
-                    return false;
-                } else {
-                    //console.log("checkDone ret true");
-                    return true;
-                }
-            }
-
-        </script>
-        <!--
-            <p><img src="bg01.png" width="100%"/>
-            <img src="bg02.png" width="100%"/>      
-            <br>
-            <img src="bg03.png" width="100%" onclick="selectHandler()"/>
-            <br>
-            <img src="bg04.png" width="100%"/></p>
-        -->
-
-    </body>
+    <div class="wrap">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="inner">
+                    <div class="con">
+                        <a href="jpg001/1.jpg"><img src="jpg001/1.jpg"></a>
+                        <h2>...</h2>
+                        <p>조형래 성도님을 위한 새해 말씀카드</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="inner">
+                    <div class="con">
+                        <img src="card_black_add.png">
+                        <h2>...</h2>
+                        <p>다른 분을 위해 말씀카드를 더 뽑기 원하시면 눌러주세요.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+		const swiper = new Swiper('.wrap',{	
+			direction: "horizontal",
+			loop: false,
+			pagination: {
+				el: '.swiper-pagination',
+				type: 'fraction'
+			},	
+			navigation : {				
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',			
+			},
+			spaceBetween: 0,
+			slidesPerView: "auto", /* "auto" */
+			grabCursor: true,
+			centeredSlides :true,
+			speed:1000,
+			effect:"coverflow",	
+			coverflowEffect: {
+				rotate: 50,
+				stretch: -100,
+				depth: 400,
+				modifier: 1,
+				slideShadows: false,
+			},
+		});
+    </script>
+</body>
 </html>
