@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>YaeinBible2022</title>
+	<title>Yaein2022</title>
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">	
 	<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 	<link rel="stylesheet" href="css/style.css">	
@@ -14,7 +14,7 @@
 <body>	
 
 	<div class="wrap">
-		<h1>2022 <span>예인교회 말씀카드</span></h1>
+		<h1>2022 <span>YAEIN</span></h1>
 
 		<ul class="auto">
 			<li class="btnStart"><i class="fas fa-play"></i></li>
@@ -27,7 +27,7 @@
 			<div class="con">
 				<img src="gate_350.jpg">
 				<h2>...</h2>
-				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하였습니다.</p>
+				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하여 준비되었습니다.</p>
 			</div>
 		</div>
 	</div>
@@ -36,7 +36,7 @@
 			<div class="con">
 				<img src="gate_350.jpg">
 				<h2>...</h2>
-				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하였습니다.</p>
+				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하여 준비되었습니다.</p>
 			</div>
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 			<div class="con">
 				<img src="gate_350.jpg">
 				<h2>...</h2>
-				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하였습니다.</p>
+				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하여 준비되었습니다.</p>
 			</div>
 		</div>
 	</div>
@@ -54,7 +54,7 @@
 			<div class="con">
 				<img src="gate_350.jpg">
 				<h2>...</h2>
-				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하였습니다.</p>
+				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하여 준비되었습니다.</p>
 			</div>
 		</div>
 	</div>
@@ -63,7 +63,7 @@
 			<div class="con">
 				<img src="gate_350.jpg">
 				<h2>...</h2>
-				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하였습니다.</p>
+				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하여 준비되었습니다.</p>
 			</div>
 		</div>
 	</div>
@@ -78,6 +78,34 @@
 	</div>
 
 	<script>
+		// check if addMode & first try. --------------------------[
+		var userNum = 0;
+		var bModeAddword = 0;
+		const UNUM = 'UserCounter22';
+        const AM = 'AddMode22';
+
+		init();
+		// Do this select.html when userNum == 0 or bModeAddword == 1 
+		if(userNum !== 0 && bModeAddword === 0 ) {
+			location.href="selected.html";
+		}
+
+		function init() {
+            if(localStorage.getItem(UNUM) !== null) {
+                userNum = parseInt(localStorage.getItem(UNUM));
+            } else {
+                userNum = 0;
+                //console.log("init userNum = " + userNum);
+            }
+            
+            if(localStorage.getItem(AM) !== null) {
+                bModeAddword = parseInt(localStorage.getItem(AM));
+            } else {
+                bModeAddword = 0;
+            }
+        }
+		// check if addMode & first try. --------------------------]
+
 		const swiper = new Swiper('.wrap',{	
 			direction: "horizontal",
 			loop: true,						
