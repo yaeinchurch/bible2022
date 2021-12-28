@@ -25,45 +25,45 @@
 	<div class="swiper-slide">
 		<div class="inner">
 			<div class="con">
-				<img src="img/pic1.png">
-				<h2>Ipsum dolor sit amet.</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, optio.</p>
+				<img src="gate_350.jpg">
+				<h2>...</h2>
+				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하였습니다.</p>
 			</div>
 		</div>
 	</div>
 	<div class="swiper-slide">
 		<div class="inner">
 			<div class="con">
-				<img src="img/pic2.png">
-				<h2>Lorem ipsum dolor.</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati eum doloribus voluptate officiis excepturi!</p>
+				<img src="gate_350.jpg">
+				<h2>...</h2>
+				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하였습니다.</p>
 			</div>
 		</div>
 	</div>
 	<div class="swiper-slide">
 		<div class="inner">
 			<div class="con">
-				<img src="img/pic3.png">
-				<h2>Dolor ipsum  sit.</h2>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi officiis iste nam quae.</p>
+				<img src="gate_350.jpg">
+				<h2>...</h2>
+				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하였습니다.</p>
 			</div>
 		</div>
 	</div>
 	<div class="swiper-slide">
 		<div class="inner">
 			<div class="con">
-				<img src="img/pic4.png">
-				<h2>Consectetur adicing.</h2>
-				<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit optio debitis sapiente!</p>
+				<img src="gate_350.jpg">
+				<h2>...</h2>
+				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하였습니다.</p>
 			</div>
 		</div>
 	</div>
 	<div class="swiper-slide">
 		<div class="inner">
 			<div class="con">
-				<img src="img/pic5.png">
-				<h2>Dicta! elit. </h2>
-				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eos, accusantium corrupti.</p>
+				<img src="gate_350.jpg">
+				<h2>...</h2>
+				<p>성도님을 위한 새해 말씀카드 455개가 랜덤하게 정해진 순서 없이 도착하였습니다.</p>
 			</div>
 		</div>
 	</div>
@@ -74,7 +74,7 @@
 		<div class="swiper-button-prev"></div>
 		
 		<!-- 페이징 버튼 -->
-		<div class="swiper-pagination"></div>
+		<!-- div class="swiper-pagination"></div -->
 	</div>
 
 	<script>
@@ -121,6 +121,15 @@
 		//btnStart버튼을 클릭시 자동롤링 정지
 		btnStop.addEventListener("click",()=>{
 			swiper.autoplay.stop();
+		});
+
+		//jonera
+		const cardsAni = document.querySelector(".swiper-wrapper");
+		cardsAni.addEventListener("click",()=>{
+			swiper.autoplay.stop();
+			console.log("addEventListener - cardsAni");
+			location.href="selected.html";
+			
 		});
 	</script>	
 </body>
